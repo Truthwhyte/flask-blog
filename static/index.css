@@ -1,0 +1,43 @@
+:root {
+    --accent2: #5b6aff;
+    --danger: #ff5c2c;
+    --success: #41f14a;
+}
+
+.alert {
+    padding: 15px;
+    width: 300px;
+    text-align: center;
+    background-color: green;
+    font-weight: bold;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.flash {
+    padding: 15px 10px;
+    font-size: 15px;
+    font-weight: 500;
+    width: fit-content;
+    border-radius: 10px;
+    margin-top: 5px;
+}
+
+.flash.danger {
+    background: rgba(255, 92, 92, .5);
+    border-color: var(--danger);
+    color: #e70c0c;
+}
+
+.flash.success {
+    background: rgba(2, 45, 5, 0.5);
+    border-color: var(--success);
+    color: var(--success);
+}
+
+.flash.info {
+    background: rgba(91, 106, 255, .5);
+    border-color: var(--accent2);
+    color: #a5adff;
+}
