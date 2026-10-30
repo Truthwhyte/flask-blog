@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title or 'Blog' }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <script src="{{ url_for('static', filename='javascript/index.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body>
+<div class="flex flex-col justify-between bg-blue-300 min-h-screen">
+
+  <div>
+    <nav class="bg-blue-400 w-screen flex justify-between items-center py-3 px-12">
+        <h1 class="font-mono text-2xl tracking-[-3px]">📰 Blog</h1>
+        <ul class="flex gap-3 items-center">
+            <li><a class="bg-transparent hover:bg-blue-600 transition duration-700 py-1 px-3 rounded cursor-pointer" href="{{ url_for('blogs') }}">Home</a></li>
+            {% if current_user.is_authenticated %}
+            <li><a class="bg-transparent hover:bg-blue-600 transition duration-700 py-1 px-3 rounded cursor-pointer" href="{{ url_for('add_blog') }}">Add blog</a></li>
+            <li><a class="bg-black hover:bg-[#292a2d] transition duration-700 py-1 px-3 rounded cursor-pointer text-white" href="{{ url_for('logout') }}">Logout</a></li>
+            {% else %}
+            <li><a class="bg-blue-300 hover:bg-blue-600 transition duration-700 py-1 px-3 rounded cursor-pointer text-white" href="{{ url_for('login') }}">Login</a></li>
+            <li><a class="bg-transparent hover:bg-blue-600 transition duration-700 py-1 px-3 rounded cursor-pointer" href="{{ url_for('register') }}">Register</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% block content %}
+    {% endblock %}
+  </div>
+    <footer class="bg-black py-2 text-white">
+        <p class="foot" style="text-align: center;">&copy; 2026 Wisdom Whyte. All rights reserved.</p>
+    </footer>
+
+</div>
+</body>
+</html>
