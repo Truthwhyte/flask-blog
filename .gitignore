@@ -1,0 +1,13 @@
+# local database and user uploads
+instance/
+*.db
+static/uploads/
+
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# secrets
+.env
