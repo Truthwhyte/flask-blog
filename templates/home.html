@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+{% with messages = get_flashed_messages() %}
+   {% if messages %}
+   {% for message in messages %}
+   <div class="flex justify-end absolute right-[50px] mr-[20px] mt-2">
+     <h4 class="alert flash-msg">{{ message }}</h4>
+   </div>
+   {% endfor %}
+   {% endif %}
+{% endwith %}
+
+<h1 class="text-2xl m-5"><i>Blogs:</i> {{ total }}</h1>
+ <div class="flex gap-5 flex-wrap md:mx-10">
+        {% for blog in blogs %}
+        <div class="w-full mx-4 md:w-80 m-auto text-white min-h-[50vh] border-2 border-white p-2 rounded-xl">
+           {% if blog.image %}
+           <img class="w-full h-56 object-cover rounded-xl" src="{{ url_for('static', filename='uploads/' + blog.image) }}" alt="{{ blog.title }}">
+           {% else %}
+           <div class="w-full h-56 rounded-xl bg-blue-500 flex items-center justify-center text-4xl">📰</div>
+           {% endif %}
+            <div class="bg-black mt-3 h-36 p-2 flex flex-col justify-between rounded-xl">
+              <p class="font-bold underline"><span>Title:</span> {{ blog.title }}</p>
+              <p class="text-sm">by {{ blog.author.username }}</p>
+              <a href="{{ url_for('viewblog', title=blog.title) }}" class="bg-blue-600 hover:bg-blue-300 transition duration-700 py-1 px-3 rounded cursor-pointer w-fit">view blog</a>
+            </div>
+        </div>
+        {% else %}
+        <p class="mx-5">No blogs yet. <a class="underline" href="{{ url_for('add_blog') }}">Write the first one.</a></p>
+        {% endfor %}
+    </div>
+{% endblock %}
