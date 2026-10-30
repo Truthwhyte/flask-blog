@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% for category, message in messages %}
+    <div class="flash {{ category }} mx-5">{{ message }}</div>
+  {% endfor %}
+{% endwith %}
+
+<div class="mx-3">
+    <h1 class="text-2xl m-5 font-bold">Add blog</h1>
+    <form method="post" enctype="multipart/form-data" class="w-full md:w-96 bg-blue-100 p-5 rounded-xl mb-5 m-auto">
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title" placeholder="Add title" required class="border-2 border-blue-600 rounded-xl py-2 pl-4 outline-none w-full"><br><br>
+        <label for="content">Content:</label>
+        <textarea id="content" name="content" placeholder="Content goes here" rows="15" required class="border-2 border-blue-600 rounded-xl py-2 pl-4 outline-none w-full"></textarea><br>
+        <label for="image">Cover image (optional):</label>
+        <input type="file" id="image" name="image" accept=".png,.jpg,.jpeg,.gif,.webp"><br><br>
+        <button type="submit" class="bg-blue-500 hover:bg-blue-300 hover:text-black cursor-pointer transition duration-700 text-white w-full py-2 rounded-xl mt-6">Post</button>
+    </form>
+</div>
+{% endblock %}
