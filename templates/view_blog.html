@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+{% with messages = get_flashed_messages() %}
+   {% if messages %}
+   {% for message in messages %}
+   <div class="flex justify-end absolute right-[50px] mr-[20px] mt-2">
+     <h4 class="alert flash-msg">{{ message }}</h4>
+   </div>
+   {% endfor %}
+   {% endif %}
+{% endwith %}
+<div class="centered w-screen md:px-28">
+    <h1 class="text-2xl m-5">Blog page</h1>
+    <div class="flex flex-col justify-center items-center mx-4">
+        {% if blog.image %}
+        <img class="rounded" src="{{ url_for('static', filename='uploads/' + blog.image) }}" alt="{{ blog.title }}"/>
+        {% endif %}
+        <div class="mt-5 bg-white p-5 rounded">
+            <p class="font-bold text-xl font-serif">Title: <span class="underline">{{ blog.title }}</span></p>
+            <p class="text-sm font-serif mb-3">by {{ blog.author.username }} · {{ blog.created_at.strftime('%d %b %Y') }}</p>
+            <p class="font-bold text-xl font-serif">Content:</p>
+            <span class="text-[15px] tracking-[1px] font-serif">{{ blog.content }}</span>
+        </div>
+
+        {% if current_user.is_authenticated and current_user.id == blog.user_id %}
+        <div class="flex gap-3 items-center my-5">
+            <a href="{{ url_for('updateblog', id=blog._id) }}" class="bg-blue-600 hover:bg-blue-300 transition duration-700 py-1 px-3 rounded cursor-pointer">Edit blog</a>
+            <form method="post" action="{{ url_for('deleteuser', id=blog._id) }}" onsubmit="return confirm('Delete this blog?');">
+                <button type="submit" class="bg-red-600 hover:bg-red-300 transition duration-700 py-1 px-3 rounded cursor-pointer">Delete</button>
+            </form>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
