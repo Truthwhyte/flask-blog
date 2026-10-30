@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% for category, message in messages %}
+    <div class="flash {{ category }} mx-5">{{ message }}</div>
+  {% endfor %}
+{% endwith %}
+
+<p class="font-bold text-2xl mt-10 ml-6 text-white">Welcome to the register page</p>
+<div class="flex flex-col justify-between border-2 border-white rounded-xl w-96 max-w-[90vw] p-2 m-auto h-fit mt-6">
+    <form method="post" class="rounded-xl bg-blue-100 p-5">
+        <label for="username">Name:</label>
+        <input type="text" id="username" name="username" placeholder="Enter your name" required class="border-2 border-blue-600 rounded-xl py-2 pl-4 outline-none w-full"><br><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required class="border-2 border-blue-600 rounded-xl py-2 pl-4 outline-none w-full"><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="*********" minlength="6" required class="border-2 border-blue-600 rounded-xl py-2 pl-4 outline-none w-full"><br><br>
+        <label for="confirm">Confirm password:</label>
+        <input type="password" id="confirm" name="confirm" placeholder="*********" minlength="6" required class="border-2 border-blue-600 rounded-xl py-2 pl-4 outline-none w-full"><br><br>
+        <button type="submit" class="bg-blue-500 hover:bg-blue-400 hover:text-black cursor-pointer transition duration-700 text-white w-full py-2 rounded-xl mt-4">Register</button>
+    </form>
+</div>
+<div class="flex justify-center mt-6">
+    <p class="font-bold text-white">Already have an account?</p>
+    <a class="ml-2 hover:underline" href="{{ url_for('login') }}">Log in here</a>
+</div>
+
+{% endblock %}
