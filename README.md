@@ -2,6 +2,16 @@
 
 A multi-user blogging web app built with Python and Flask. Users register, log in, and write, edit and delete their own posts with an optional cover image.
 
+## Screenshots
+
+| Login | Home feed |
+| --- | --- |
+| ![Login page](images/login.png) | ![Home feed showing three posts](images/home.png) |
+
+![A single post with its cover image, author, date and the author-only Edit and Delete buttons](images/post.png)
+
+*Sample posts and cover images were made for these screenshots.*
+
 ## Features
 
 - **Accounts:** registration with validation, login and logout, "remember me" sessions (Flask-Login)
